@@ -34,7 +34,13 @@
 ;; 3.  WRITE FACTORIAL:  given n, returns n!
 ;;     Hint:  recursion is your friend
 (define (fact n)
-  (if (= 1 n) 1 (* n (fact (- n 1)))) )
+  (if (= 1 n) 
+    1 
+    (* n 
+      (fact (- n 1))
+      )
+    )
+  )
 
 (display (fact 1)) (newline) ;; -> 1
 (display (fact 2)) (newline) ;; -> 2
@@ -42,7 +48,16 @@
 ;; 4.  WRITE FIBONACCI:  given n, returns the nth fibonacci number as shown below
 ;;     Hint:  don't run this on really big numbers!
 (define (fib n)
-   (if (positive? n) (if (= n 1) 1 (+ (fib (- n 1)) (fib (- n 2)))) 0 ))
+  (if (positive? n) 
+    (if (= n 1) 
+      1 
+      (+ (fib (- n 1)) 
+        (fib (- n 2))
+        )
+      ) 
+    0 
+    )
+  )
 
 (display (fib 1)) (newline) ;; -> 1
 (display (fib 2)) (newline) ;; -> 1
@@ -54,7 +69,11 @@
 ;; 5.  WRITE a procedure that takes a list of numbers and returns the sum of those numbers
 ;;     Hint:  first, rest, cons
 (define (sum lst)
-  (if (= 1 (length lst)) (first lst) (+ (first lst) (sum (rest lst)))) )
+  (if (= 1 (length lst)) 
+    (first lst) 
+    (+ (first lst) (sum (rest lst)))
+    ) 
+  )
 
 (display (sum '(1 2 3 4))) (newline) ;; -> 10
 (display (sum '(1 20 300))) (newline) ;; -> 321
