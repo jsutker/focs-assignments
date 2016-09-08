@@ -1,17 +1,18 @@
 #lang racket
 
-;;; Student Name: Frankly Olin [change to your name]
+;;; Student Name: Joe Sutker
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
-;;; [ ] I completed this assignment with assistance from ___
-;;;     and/or using these external resources: ___
+;;; [X] I completed this assignment with assistance from ___
+;;;     and/or using these external resources: https://docs.racket-lang.org/reference/if.html
+;;;     and/or using these external resources: https://docs.racket-lang.org/guide/Lists__Iteration__and_Recursion.html
 
 ;;     NOTE:  You need not worry about error checking in the programs below.
 
 ;; 1.  WRITE SQUARE:  given n, returns n^2.  Hint:  use *
 (define (square x)
-  your-code-here)
+  (* x x))
   
 (display (square 2)) (newline)  ;; -> 4
 
@@ -19,8 +20,13 @@
 ;;     could be the hypotenuse of a right triangle with the specified three side lengths
 ;;     Hint:  use = to compare numeric values
 
-(define (is-right-triangle)
-  your-code-here)
+(define (is-right-triangle x y z)
+  (or (= (* x x) (+ (* z z) (* y y))) 
+  	(or (= (* z z) (+ (* x x) (* y y))) 
+  		(= (* y y) (+ (* x x) (* z z)))
+  		)
+  	)
+  )
   
 (display (is-right-triangle 3 4 5)) (newline)  ;; -> #t
 (display (is-right-triangle 4 5 6)) (newline)  ;; -> #f
@@ -28,15 +34,15 @@
 ;; 3.  WRITE FACTORIAL:  given n, returns n!
 ;;     Hint:  recursion is your friend
 (define (fact n)
-  your-code-here)
+  (if (= 1 n) 1 (* n (fact (- n 1)))) )
 
 (display (fact 1)) (newline) ;; -> 1
-(display (fact 2)) (newline) ;; -> 1
+(display (fact 2)) (newline) ;; -> 2
 
 ;; 4.  WRITE FIBONACCI:  given n, returns the nth fibonacci number as shown below
 ;;     Hint:  don't run this on really big numbers!
 (define (fib n)
-   your-code-here)
+   (if (positive? n) (if (= n 1) 1 (+ (fib (- n 1)) (fib (- n 2)))) 0 ))
 
 (display (fib 1)) (newline) ;; -> 1
 (display (fib 2)) (newline) ;; -> 1
@@ -48,7 +54,7 @@
 ;; 5.  WRITE a procedure that takes a list of numbers and returns the sum of those numbers
 ;;     Hint:  first, rest, cons
 (define (sum lst)
-  your-code-here)
+  (if (= 1 (length lst)) (first lst) (+ (first lst) (sum (rest lst)))) )
 
 (display (sum '(1 2 3 4))) (newline) ;; -> 10
 (display (sum '(1 20 300))) (newline) ;; -> 321
@@ -56,6 +62,18 @@
 ;; 6.  WRITE a procedure that takes a list of numbers and returns the largest one.
 ;;     While there are solutions using scheme's built-in max, we were actually hoping you'd do something else...
 (define (my-max lst)
-  your-code-here)
+  (define (running-max lst the-max)
+  	(if (empty? lst)
+  		the-max
+	  	(if (> (first lst) the-max) 
+	  		(running-max (rest lst) (first lst)) 
+	  		(running-max (rest lst) the-max)
+	  		)
+	  	)
+	)
+  (running-max (rest lst) (first lst))
+  )
+
+;;  (if (= 1 (length lst)) (first lst) (if (> (first lst) (first (rest lst))) (my-max (cons (first lst) (rest (rest lst)))) (my-max (cons (first (rest lst)) (rest (rest lst)))))) )
 
 (display (my-max '(1 10 2 20 3))) (newline) ;; -> 20
