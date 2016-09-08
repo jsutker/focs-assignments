@@ -4,7 +4,7 @@
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
-;;; [X] I completed this assignment with assistance from ___
+;;; [X] I completed this assignment with assistance from Danny Wolf (he convinced me to actually format nicely)
 ;;;     and/or using these external resources: https://docs.racket-lang.org/reference/if.html
 ;;;     and/or using these external resources: https://docs.racket-lang.org/guide/Lists__Iteration__and_Recursion.html
 
