@@ -89,10 +89,8 @@
 	  		(running-max (rest lst) the-max)
 	  		)
 	  	)
-	)
+  	)
   (running-max (rest lst) (first lst))
   )
-
-;;  (if (= 1 (length lst)) (first lst) (if (> (first lst) (first (rest lst))) (my-max (cons (first lst) (rest (rest lst)))) (my-max (cons (first (rest lst)) (rest (rest lst)))))) )
 
 (display (my-max '(1 10 2 20 3))) (newline) ;; -> 20

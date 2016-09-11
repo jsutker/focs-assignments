@@ -1,6 +1,6 @@
 #lang racket
 
-;;; Student Name: Frankly Olin [change to your name]
+;;; Student Name: Joe Sutker
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
@@ -10,7 +10,78 @@
 ;;; 1.  Create a calculator that takes one argument: a list that represents an expression.
 
 (define (calculate x)
-  your-code-here)
+  (cond 
+  	[(number? x) x]
+  	[(list? x) (cond
+      [(equal? (first x) 'ADD)
+        (+ (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'MUL)
+        (* (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'SUB)
+        (- (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'GT)
+        (> (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'LT)
+        (< (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'GE)
+        (>= (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'LE)
+        (<= (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'EQ)
+        (= (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )]
+      [(equal? (first x) 'NEQ)
+        (not 
+          (= (calculate (first (rest x)))
+            (calculate (first (rest (rest x))))
+            )
+          )
+        ]
+      [(equal? (first x) 'ANND)
+        (and (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'ORR)
+        (or (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'NOTT)
+        (not (calculate (first (rest x)))
+          )
+        ]
+      [(equal? (first x) 'IPH)
+        (if (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          (calculate (first (rest (rest (rest x)))))
+          )
+        ]
+      )]
+  	)
+  )
 
 (calculate '(ADD 3 4)) ;; --> 7
 
@@ -28,7 +99,7 @@
 
 ;;; 4. Add boolean operations ANND, ORR, NOTT
 
-(calculate '(AND (GT (ADD 3 4) (MUL 5 6))) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #f
+(calculate '(ANND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #f
 
 ;;; 5. Add IPH
 
