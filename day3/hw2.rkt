@@ -4,8 +4,7 @@
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
-;;; [ ] I completed this assignment with assistance from ___
-;;;     and/or using these external resources: ___
+;;; [X] I completed this assignment using these external resources: https://docs.racket-lang.org/reference/booleans.html
 
 ;;; 1.  Create a calculator that takes one argument: a list that represents an expression.
 
