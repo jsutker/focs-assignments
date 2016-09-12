@@ -10,8 +10,7 @@
 
 (define (calculate x)
   (cond 
-  	[(number? x) x]
-  	[(list? x) (cond
+    [(list? x) (cond
       [(equal? (first x) 'ADD)
         (+ (calculate (first (rest x)))
           (calculate (first (rest (rest x))))
@@ -24,6 +23,11 @@
         ]
       [(equal? (first x) 'SUB)
         (- (calculate (first (rest x)))
+          (calculate (first (rest (rest x))))
+          )
+        ]
+      [(equal? (first x) 'DIV)
+        (/ (calculate (first (rest x)))
           (calculate (first (rest (rest x))))
           )
         ]
@@ -79,7 +83,8 @@
           )
         ]
       )]
-  	)
+  	[else x]
+    )
   )
 
 (calculate '(ADD 3 4)) ;; --> 7
