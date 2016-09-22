@@ -25,6 +25,8 @@ Convert the automaton you created for problem 1 into a deterministic automaton. 
 
 The automata we have considered so far accept only strings over the alphabet {0,1}.  Consider a machine that could accept strings over a larger alphabet, such as the English alphabet (`a` through `z`, at least; we'll ignore case and punctuation for the moment).  Would such a machine be more powerful?  Why or why not?  Try to construct a formal proof for your answer, at least for the alphabet {`a`,`b`,`c`,`d`}.
 
+Such a machine would be faster, yet not more powerful. You can represent single hop paths with larger alphabets as multihop paths with a smaller alphabet by associating combinations of the smaller alphabet's letters to single letters in the larger alphabet. This would be a mapping, so you could have {a: 00, b: 01, c: 10, d: 11} for our example larger alphabet. Thus, it would take twice as many hops for this, but it could still do everything with the smaller alphabet that it could with the larger alphabet.
+
 ### 4. [*] Challenge: Reverse
 
 Assume that you have a deterministic finite automaton A that recognizes a language L.  Show how to construct an automaton that recognizes L_reverse, that is, s is a string in L_reverse iff s_reverse -- s spelled backwards -- is in L.
@@ -50,3 +52,7 @@ Optionally, read Stuart pp.79-103.
 ### 6. Regular Expression Practice
 
 Construct a regular expression that matches *all* and *only* those strings that contain exactly one `1` (and any number of `0`s). For example, `1`, `0010`, `100`; but not `0` or `101`.
+
+/[^1]*1[^1]*/
+
+or /^[^1]*1[^1]*$/ if you want to either match the whole passed in string or nothing at all
