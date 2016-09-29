@@ -30,7 +30,8 @@ b) All strings with an equal number of occurrences of the substrings `01` and `1
 
 [010 is in this language; `000110` is in the language; `0101010` is in the language; but `010101` is not.]
 
-(0*(0+1+)*0+|1*(1+0+)*1+) is the regular expression
+((0+1+)*0+|(1+0+)*1+) is the regular expression
+(.)(.*\1)? also works (if the entire alphabet (.) can only be 0 or 1)
 
 c) All strings (over {0,1}) consisting of a substring _w_ followed by the reverse of the substring.
 
