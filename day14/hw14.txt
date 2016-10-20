@@ -22,7 +22,7 @@ For each of the following pairs of functions, identify a multiplier and a minimu
   B. n^2 + 2n + 6    and     6n^2 - 25                  [n0 = 3; k=1]
   C. n^3 + n^2 - 2n     and     6n^2 - 25                  [first has a higher order of growth]
   D. 869,438    and    923                  [n0 = any; k=941]
-  E. 2^n    and    3^n                  [n0 = 2; k>=1]
+  E. 2^n    and    3^n                  [n0 = 1; k=1]
   F. 3^n    and    2^n                  [first has higher order of growth]
   G. log_2 n     and    log_10 n                  [n0 = 1; k=4]    [NB:  these are intended to be log-base-2 of n and log-base-10 of n]
   H. log_10 n^2    and     log_2 n                  [n0 = 1; k=2]
