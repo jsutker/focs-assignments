@@ -31,7 +31,7 @@ What inequalities must hold in each of these trees?
     T1     T2
 ```
 
-Ans:  all elements of TI <= x <= all elements of T2
+Ans:  all elements of T1 <= a <= all elements of T2
 
 ### 1.
 ```
@@ -44,9 +44,7 @@ Ans:  all elements of TI <= x <= all elements of T2
  T1    T2
 ```
 
-Ans:  
-
-
+Ans:  all in T1 <= c <= all in T2 <= b <= all in T3
 
 ### 2.
 ```
@@ -59,9 +57,7 @@ Ans:
        T2    T3
 ```
 
-Ans:  
-
-
+Ans:  T1 <= d <= T2 <= e <= T3
 
 ### 3.
 ```
@@ -77,9 +73,7 @@ Ans:
     T2     T3
 ```
 
-Ans:  
-
-
+Ans:  T1 <= g <= T2 <= h <= T3 <= f <= T4
 
 ## II.  Extending this analogy:  drawing trees.
 
@@ -89,15 +83,72 @@ What other tree structures containing three internal nodes -- x, y, and z -- can
 [Hint:  There should be four more shapes.]  
 The relationship among x, y, and z doesn't matter.  For convenience, we've arbitrarily labeled them top to bottom and the subtrees left to right.
 
+a.
+```
+       x
+      / \
+     /   \
+    y     T4
+   / \
+  /   \
+T1     z
+      / \
+     /   \
+   T2     T3
+```
 
+b.
+```
+    x
+   / \
+  /   \
+ T1    y
+      / \
+     /   \
+    z     T4
+   / \
+  /   \
+T2     T3
+```
 
+c.
+```
+        x
+      /   \
+     /     \
+    y       z
+   / \     / \
+  /   \   /   \
+T1    T2 T3   T4
+```
 
+d.
+```
+          x
+         / \
+        /   \
+       y     T4
+      / \
+     /   \
+    z     T3
+   / \
+  /   \
+T1     T2
+```
 
-
-<expand as needed>
-
-
-
+e.
+```
+   x
+  / \
+ /   \
+T1    y
+     / \
+    /   \
+   T2    z
+        / \
+       /   \
+      T3   T4
+```
 
 
 ## III.  Observing balance
@@ -111,6 +162,7 @@ For EVERY internal node (x and y), the depth of the internal node's left subtree
 
 Does this property hold for any of the three-internal-node trees?  Which ones?  Which ones are NOT almost-balanced?  (We call these unbalanced.)
 
+Yes; just c; a/b/d/e
 
 ## IV.  Maintaining balance
 
@@ -124,8 +176,49 @@ If you are given a binary tree of the form in question 1, you can transform them
 
 Use this insight to show how to modify each of the unbalanced tree forms with three internal nodes into an almost-balanced tree that preserves the binary search property.
 
+a.
+```
+        z
+      /   \
+     /     \
+    y       x
+   / \     / \
+  /   \   /   \
+T1    T2 T3   T4
+```
 
+b.
+```
+        z
+      /   \
+     /     \
+    x       y
+   / \     / \
+  /   \   /   \
+T1    T2 T3   T4
+```
 
+d.
+```
+        y
+      /   \
+     /     \
+    z       x
+   / \     / \
+  /   \   /   \
+T1    T2 T3   T4
+```
+
+e.
+```
+        y
+      /   \
+     /     \
+    x       z
+   / \     / \
+  /   \   /   \
+T1    T2 T3   T4
+```
 
 ## V.  Rebalancing
 
@@ -150,33 +243,93 @@ For EVERY internal node (x and y), the depth of the internal node's left subtree
                   /
                  18
 ```
+8: 3/4
+6: 2/1
+3: 1/1
+14: 2/3
+16: 1/2
 
+CONFIRMED
 
 
 ### 8. 
 
 Insert the value 13 into this tree.  Where does it go?  Is the resulting tree almost-balanced?  If not, see #11.
 
+```
+         8
+        / \
+       /   \
+      6     14
+     /\      / \  
+    /  \    /   \ 
+   3   7   12    16  
+  /\       /\    /\ 
+ /  \     /  \  /  \ 
+2    5   10 13 15   20
+                   /
+                  /
+                 18
+```
+
+STILL BALANCED
 
 ### 9. 
 
 Insert the value 17 into the tree.  Where does it go?  Is the resulting tree almost-balanced?  If not, see #11.
 
+```
+         8
+        / \
+       /   \
+      6     14
+     /\      / \  
+    /  \    /   \ 
+   3   7   12    16  
+  /\       /\    /\ 
+ /  \     /  \  /  \ 
+2    5   10 13 15   20
+                   /
+                  /
+                 18
+                /
+               /
+              17
+```
+
+NOT BALANCED
+
 ### 10. 
 
 Insert the value 4 into the tree.  Where does it go?  Is the resulting tree almost-balanced?  If not, see #11.
 
+PREVIOUS WAS IMBALANCED
 
 ### 11. 
 
 Use the work you've done above to rebalance the tree.  Start at the newly inserted value; work up until you find an internal node that has left and right children whose depth differs by more than one.  Rebalance that subtree using the processes you created in #6.  Continue to climb the tree, rebalancing any unbalanced (not almost-balanced) nodes as you go up.
 
+```
+         8
+        / \
+       /   \
+      6     14
+     /\      / \  
+    /  \    /   \ 
+   3   7   12    16  
+  /\       /\    /\ 
+ /  \     /  \  /  \ 
+2    5   10 13 15   18
+                   / \
+                  /   \
+                 17   20
+```
 
 ### 12. 
 
 [Challenge] Assuming that a tree is almost-balanced when you make an insertion, and that that insertion may violate the almost-balanced property, can almost-balance always be restored solely by climbing the  path from the newly inserted node to the root?  Will you ever have to descend another branch?  Why or why not?
 
-
+no it can't, because you may reach too many nodes on one side and have to push one to the other
 
 
 
