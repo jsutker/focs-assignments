@@ -10,3 +10,23 @@ likes(amy, tyrion).
 likes(tyrion, amy).
 likes(susan, tyrion).
 likes(tyrion, susan).
+
+mutual(A, B) :-
+  likes(A, B),
+  likes(B, A).
+
+mutual(A, B)?
+
+popular(A) :-
+  likes(B, A),
+  likes(C, A),
+  likes(D, A),
+  B != C,
+  B != D,
+  C != D.
+
+popular(A)?
+
+likes(A, B) :- A = B.
+
+popular(A)?
